@@ -9,9 +9,11 @@ private:
 	Timer * mTimer;
 	AudioManager * mAudio;
 
-	Texture * mBackground;
+	//Texture * mBackground;
 
-	Texture * mTitle;
+	/*Texture * mTitle;*/
+	Scoreboard* mPlayer1;
+	Scoreboard* mPlayer2;
 
 private:
 
