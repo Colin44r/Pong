@@ -31,7 +31,7 @@ StartScreen::StartScreen() {
 	mPlayWhiteBox->Rotate(90);
 
 	mTopBar->Parent(this);
-	//...
+	
 
 	mPlayerModes->Parent(this);
 	mLeftPaddle->Parent(mPlayerModes);

@@ -9,6 +9,15 @@ private:
 
 	PlaySideBar * mSideBar;
 
+	GameEntity* mPlayerModes;
+
+	Texture* mLeftPaddle;
+	Texture* mRightPaddle;
+	Texture* mMiddleLine;
+	Texture* mScorePlayer1;
+	Texture* mScorePlayer2;
+	Texture* mBall;
+
 	//Texture * mStartLabel;
 
 	//float mLevelStartTimer;
@@ -16,11 +25,11 @@ private:
 
 	bool mGameStarted;
 
-	Level * mLevel;
+	//Level * mLevel;
 	bool mLevelStarted;
 	int mCurrentStage;
 
-	Player * mPlayer;
+	//Player * mPlayer;
 
 private:
 	void StartNextLevel();
