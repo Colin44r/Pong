@@ -1,7 +1,9 @@
 #ifndef __PLAYSCREEN_H
 #define __PLAYSCREEN_H
-#include "Level.h"
-
+//#include "Level.h"
+#include "PlaySideBar.h"
+#include "Player.h"
+#include "tinyxml2.h"
 class PlayScreen : public GameEntity {
 private:
 	Timer * mTimer;
@@ -11,8 +13,8 @@ private:
 
 	GameEntity* mPlayerModes;
 
-	Texture* mLeftPaddle;
-	Texture* mRightPaddle;
+	Player* mLeftPaddle;
+	Player* mRightPaddle;
 	Texture* mMiddleLine;
 	Texture* mScorePlayer1;
 	Texture* mScorePlayer2;
@@ -24,7 +26,8 @@ private:
 	//float mLevelStartDelay;
 
 	bool mGameStarted;
-
+	bool mPlayerHit;
+	bool mPlayer2Hit;
 	//Level * mLevel;
 	bool mLevelStarted;
 	int mCurrentStage;
@@ -33,6 +36,7 @@ private:
 
 private:
 	void StartNextLevel();
+	void HandleCollisions();
 
 public:
 	PlayScreen();

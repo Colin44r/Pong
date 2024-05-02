@@ -14,8 +14,8 @@ PlayScreen::PlayScreen() {
 	mAudio = AudioManager::Instance();
 
 	mPlayerModes = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.55f);
-	mLeftPaddle = new GLTexture("PongSpriteSheet.png", 365, 4, 66, 530);
-	mRightPaddle = new GLTexture("PongSpriteSheet.png", 445, 4, 66, 530);
+	mLeftPaddle = new Player(false);
+	mRightPaddle = new Player(true);
 	mScorePlayer1 = new GLTexture("PongSpriteSheet.png", 187, 624, 75, 108);
 	mScorePlayer2 = new GLTexture("PongSpriteSheet.png", 187, 624, 75, 108);
 	mMiddleLine = new GLTexture("PongSpriteSheet.png", 288, 0, 39, 1029);
@@ -41,8 +41,7 @@ PlayScreen::PlayScreen() {
 	mMiddleLine->Position(0.0f, -50.0f);
 	mBall->Position(75.0f, -50.0f);
 
-	mRightPaddle->Scale(Vector2(0.25f, 0.15f));
-	mLeftPaddle->Scale(Vector2(0.25f, 0.15f));
+
 	mBall->Scale(Vector2(0.40f, 0.40f));
 	
 	//mStartLabel = new GLTexture("START", "emulogic.ttf", 32, { 150, 0, 0 });
@@ -121,8 +120,29 @@ bool PlayScreen::GameOver() {
 	return false;
 }
 
+void PlayScreen::HandleCollisions() {
+	if (!mPlayerHit) {
+		if (mRightPaddle ->WasHit()) {
+			mPlayerHit = true;
+			
+		}
+	}
+	if (!mPlayer2Hit) {
+		if (mLeftPaddle->WasHit()) {
+			mPlayerHit = true;
+
+		}
+	}
+}
+
 void PlayScreen::Update() {
+	mLeftPaddle->Update();
+	mRightPaddle->Update();
+
 	if (mGameStarted) {
+		
+		
+		
 		//Setting StartNextLevel to a Debug key because every game will want to call this differently
 		//if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_L)) {
 		//	StartNextLevel();
