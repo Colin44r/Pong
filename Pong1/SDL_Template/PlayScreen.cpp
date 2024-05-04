@@ -16,14 +16,18 @@ PlayScreen::PlayScreen() {
 	mPlayerModes = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.55f);
 	mLeftPaddle = new Player(false);
 	mRightPaddle = new Player(true);
-	mScorePlayer1 = new GLTexture("PongSpriteSheet.png", 187, 624, 75, 108);
-	mScorePlayer2 = new GLTexture("PongSpriteSheet.png", 187, 624, 75, 108);
+	mScorePlayer1 = new Scoreboard();
+	mScorePlayer2 = new Scoreboard();
 	mMiddleLine = new GLTexture("PongSpriteSheet.png", 288, 0, 39, 1029);
 	mBall = new GLTexture("PongSpriteSheet.png", 398, 577, 83, 82);
 
 	mSideBar = new PlaySideBar();
 	mSideBar->Parent(this);
 	mSideBar->Position(Graphics::SCREEN_WIDTH * 0.87f, Graphics::SCREEN_HEIGHT * 0.05f);
+
+	mPlayer1Score = 0;
+	mPlayer2Score = 0;
+
 
 	mPlayerModes->Parent(this);
 	mRightPaddle->Parent(mPlayerModes);
@@ -32,7 +36,7 @@ PlayScreen::PlayScreen() {
 	mScorePlayer2->Parent(mPlayerModes);
 	mMiddleLine->Parent(mPlayerModes);
 	mBall->Parent(mPlayerModes);
-
+	
 
 	mLeftPaddle->Position(-450.0f, -50.0f);
 	mRightPaddle->Position(450.0f, -50.0f);
@@ -138,6 +142,19 @@ void PlayScreen::HandleCollisions() {
 void PlayScreen::Update() {
 	mLeftPaddle->Update();
 	mRightPaddle->Update();
+
+
+	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_H)) {
+		mPlayer1Score++;
+		if (mPlayer1Score > 11) { mPlayer1Score = 11; }
+		mScorePlayer1->Score(mPlayer1Score);
+	}
+
+	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_G)) {
+		mPlayer2Score++;
+		if (mPlayer2Score > 11) { mPlayer2Score = 11; }
+		mScorePlayer2->Score(mPlayer2Score);
+	}
 
 	if (mGameStarted) {
 		
