@@ -4,6 +4,8 @@
 #include "PlaySideBar.h"
 #include "Player.h"
 #include "tinyxml2.h"
+#include "Ball.h"
+
 class PlayScreen : public GameEntity {
 private:
 	Timer * mTimer;
@@ -18,7 +20,7 @@ private:
 	Texture* mMiddleLine;
 	Texture* mScorePlayer1;
 	Texture* mScorePlayer2;
-	Texture* mBall;
+	Ball* mBall;
 
 	//Texture * mStartLabel;
 
