@@ -43,7 +43,7 @@ distribution.
 #include <stdint.h>
 
 /*
-   TODO: intern strings instead of allocation.
+   TODO: intern strings instead of allocation. <<<<< I Think this was not ours
 */
 /*
 	gcc:
