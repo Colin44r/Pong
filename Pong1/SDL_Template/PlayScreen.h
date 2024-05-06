@@ -18,9 +18,11 @@ private:
 	Player* mLeftPaddle;
 	Player* mRightPaddle;
 	Texture* mMiddleLine;
-	Texture* mScorePlayer1;
-	Texture* mScorePlayer2;
+  
 	Ball* mBall;
+
+	Scoreboard* mScorePlayer1;
+	Scoreboard* mScorePlayer2;
 
 	//Texture * mStartLabel;
 
@@ -33,7 +35,8 @@ private:
 	//Level * mLevel;
 	bool mLevelStarted;
 	int mCurrentStage;
-
+	int mPlayer1Score;
+	int mPlayer2Score;
 	//Player * mPlayer;
 
 private:
