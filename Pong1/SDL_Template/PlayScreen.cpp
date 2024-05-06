@@ -19,7 +19,7 @@ PlayScreen::PlayScreen() {
 	mScorePlayer1 = new Scoreboard();
 	mScorePlayer2 = new Scoreboard();
 	mMiddleLine = new GLTexture("PongSpriteSheet.png", 288, 0, 39, 1029);
-	mBall = new GLTexture("PongSpriteSheet.png", 398, 577, 83, 82);
+	mBall = new Ball(400);
 
 	mSideBar = new PlaySideBar();
 	mSideBar->Parent(this);
@@ -46,8 +46,13 @@ PlayScreen::PlayScreen() {
 	mBall->Position(75.0f, -50.0f);
 
 
-	mBall->Scale(Vector2(0.40f, 0.40f));
+	//mBall->Scale(Vector2(0.40f, 0.40f));
 	
+
+
+
+
+
 	//mStartLabel = new GLTexture("START", "emulogic.ttf", 32, { 150, 0, 0 });
 	//mStartLabel->Parent(this);
 	//mStartLabel->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.5f);
@@ -142,6 +147,7 @@ void PlayScreen::HandleCollisions() {
 void PlayScreen::Update() {
 	mLeftPaddle->Update();
 	mRightPaddle->Update();
+	mBall->Update();
 
 
 	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_H)) {
@@ -194,14 +200,15 @@ void PlayScreen::Render() {
 	//if (!mGameStarted) {
 	//	mStartLabel->Render();
 	//}
-
+	mMiddleLine->Render();
+	mBall->Render();
 	mSideBar->Render();
 	mLeftPaddle->Render();
 	mRightPaddle->Render();
 	mScorePlayer1->Render();
 	mScorePlayer2->Render();
-	mMiddleLine->Render();
-	mBall->Render();
+	
+	
 
 
 	if (mGameStarted) {

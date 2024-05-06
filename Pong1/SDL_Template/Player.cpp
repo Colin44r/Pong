@@ -10,7 +10,7 @@ void Player::HandleMovement() {
 		if (mInput->KeyDown(SDL_SCANCODE_DOWN)) {
 			Translate(-Vec2_Down * mMoveSpeed * mTimer->DeltaTime(), World);
 		}
-		else if (mInput->KeyDown(SDL_SCANCODE_UP)) {
+		 if (mInput->KeyDown(SDL_SCANCODE_UP)) {
 			Translate(-Vec2_Up * mMoveSpeed * mTimer->DeltaTime(), World);
 		}
 	}
@@ -19,7 +19,7 @@ void Player::HandleMovement() {
 		if (mInput->KeyDown(SDL_SCANCODE_S)) {
 			Translate(-Vec2_Down * mMoveSpeed * mTimer->DeltaTime(), World);
 		}
-		else if (mInput->KeyDown(SDL_SCANCODE_W)) {
+		 if (mInput->KeyDown(SDL_SCANCODE_W)) {
 			Translate(-Vec2_Up * mMoveSpeed * mTimer->DeltaTime(), World);
 		}
 	}
