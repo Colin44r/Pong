@@ -18,7 +18,9 @@ private:
 	Player* mLeftPaddle;
 	Player* mRightPaddle;
 	Texture* mMiddleLine;
-  
+	Texture* mGameOverScreen;
+	Texture* mGameOverBlackScreen;
+
 	Ball* mBall;
 
 	Scoreboard* mScorePlayer1;
@@ -42,6 +44,10 @@ private:
 private:
 	void StartNextLevel();
 	void HandleCollisions();
+	bool mGameOver;
+	float mGameOverTimer;
+	float mTimerDuration;
+	bool mDisplayGameOverScreen;
 
 public:
 	PlayScreen();

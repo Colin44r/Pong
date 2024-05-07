@@ -12,6 +12,10 @@ void PlayScreen::StartNextLevel() {
 PlayScreen::PlayScreen() {
 	mTimer = Timer::Instance();
 	mAudio = AudioManager::Instance();
+	mGameOver = false;
+	mDisplayGameOverScreen = false;
+	mGameOverTimer = 0;
+	mTimerDuration = 3;
 
 	mPlayerModes = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.55f);
 	mLeftPaddle = new Player(false);
@@ -20,6 +24,8 @@ PlayScreen::PlayScreen() {
 	mScorePlayer2 = new Scoreboard();
 	mMiddleLine = new GLTexture("PongSpriteSheet.png", 288, 0, 39, 1029);
 	mBall = new Ball(400);
+	mGameOverScreen = new GLTexture("GameOverScreen.png");
+	mGameOverBlackScreen = new GLTexture("BlackScreen.png", 0, 0, 1267, 705);
 
 	mSideBar = new PlaySideBar();
 	mSideBar->Parent(this);
@@ -36,19 +42,24 @@ PlayScreen::PlayScreen() {
 	mScorePlayer2->Parent(mPlayerModes);
 	mMiddleLine->Parent(mPlayerModes);
 	mBall->Parent(mPlayerModes);
-	
+	mGameOverScreen->Parent(mPlayerModes);
+	mGameOverBlackScreen->Parent(mPlayerModes);
 
 	mLeftPaddle->Position(-450.0f, -50.0f);
 	mRightPaddle->Position(450.0f, -50.0f);
-	mScorePlayer1->Position(-250.0f, -300.0f);
-	mScorePlayer2->Position(250.0f, -300.0f);
+	mScorePlayer1->Position(-130.0f, -350.0f);
+	mScorePlayer2->Position(130.0f, -350.0f);
 	mMiddleLine->Position(0.0f, -50.0f);
 	mBall->Position(75.0f, -50.0f);
+	mGameOverScreen->Position(0.0f, -50.0f);
+	mGameOverBlackScreen->Position(0.0f, -50.0f);
 
-
+	mGameOverScreen->Scale(Vector2(0.40f, 0.40f));
+	mGameOverBlackScreen->Scale(Vector2(2.40f, 2.40f));
 	//mBall->Scale(Vector2(0.40f, 0.40f));
+	//mScorePlayer1->Scale(Vector2(1.7f, 2.50f));
+	//mScorePlayer2->Scale(Vector2(1.7f, 2.50f));
 	
-
 
 
 
@@ -88,7 +99,10 @@ PlayScreen::~PlayScreen() {
 	mMiddleLine = nullptr;
 	delete mBall;
 	mBall = nullptr;
-	
+	delete mGameOverScreen;
+	mGameOverScreen = nullptr;
+	delete mGameOverBlackScreen;
+	mGameOverBlackScreen = nullptr;
 
 	
 	
@@ -126,7 +140,7 @@ void PlayScreen::StartNewGame() {
 }
 
 bool PlayScreen::GameOver() {
-	return false;
+	return mGameOver;
 }
 
 void PlayScreen::HandleCollisions() {
@@ -145,20 +159,45 @@ void PlayScreen::HandleCollisions() {
 }
 
 void PlayScreen::Update() {
-	mLeftPaddle->Update();
-	mRightPaddle->Update();
-	mBall->Update();
 
+
+	if (mPlayer2Score < 11 && mPlayer1Score <11){
+		mBall->Update();
+		mLeftPaddle->Update();
+		mRightPaddle->Update();
+	}
 
 	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_H)) {
 		mPlayer1Score++;
-		if (mPlayer1Score > 11) { mPlayer1Score = 11; }
+		if (mPlayer1Score >= 11) {
+			mPlayer1Score = 11;
+			mDisplayGameOverScreen = true;
+			if (mGameOverTimer >= mTimerDuration) {
+				mGameOver = true; 
+			}
+			else {
+				mGameOverTimer += mTimer->DeltaTime();
+
+			}
+		}
 		mScorePlayer1->Score(mPlayer1Score);
+
 	}
 
 	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_G)) {
 		mPlayer2Score++;
-		if (mPlayer2Score > 11) { mPlayer2Score = 11; }
+		if (mPlayer2Score >= 11) { 
+			mPlayer2Score = 11;
+			mDisplayGameOverScreen = true;
+			if (mGameOverTimer >= mTimerDuration) {
+				mGameOver = true;
+			
+			}
+			else {
+				mGameOverTimer += mTimer->DeltaTime();
+			}
+			
+		}
 		mScorePlayer2->Score(mPlayer2Score);
 	}
 
@@ -200,6 +239,7 @@ void PlayScreen::Render() {
 	//if (!mGameStarted) {
 	//	mStartLabel->Render();
 	//}
+	
 	mMiddleLine->Render();
 	mBall->Render();
 	mSideBar->Render();
@@ -207,6 +247,12 @@ void PlayScreen::Render() {
 	mRightPaddle->Render();
 	mScorePlayer1->Render();
 	mScorePlayer2->Render();
+	
+	if (mDisplayGameOverScreen == true) {
+		mGameOverBlackScreen->Render();
+		mGameOverScreen->Render();
+		
+	}
 	
 	
 
