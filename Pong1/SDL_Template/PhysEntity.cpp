@@ -26,6 +26,12 @@ void PhysEntity::AddCollider(Collider * collider, Vector2 localPos) {
 	}
 }
 
+std::string PhysEntity::GetName() {
+	return mName;
+
+}
+
+
 bool PhysEntity::IgnoreCollisions() {
 	return false;
 }

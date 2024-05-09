@@ -14,6 +14,7 @@ protected:
 	void AddCollider(Collider * collider, Vector2 localPos = Vec2_Zero);
 
 	virtual bool IgnoreCollisions();
+	std::string mName;
 
 public:
 	PhysEntity();
@@ -26,5 +27,7 @@ public:
 	virtual void Hit(PhysEntity * other) { }
 
 	virtual void Render() override;
+
+	std::string GetName();
 };
 #endif

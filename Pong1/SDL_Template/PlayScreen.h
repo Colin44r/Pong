@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "tinyxml2.h"
 #include "Ball.h"
+#include "GoalPosts.h"
 
 class PlayScreen : public GameEntity {
 private:
@@ -21,6 +22,8 @@ private:
 	Texture* mGameOverScreen;
 	Texture* mGameOverBlackScreen;
 
+	GoalPosts* mGoalPosts;
+	GoalPosts* mGoalPosts2;
 	Ball* mBall;
 
 	Scoreboard* mScorePlayer1;
@@ -37,8 +40,7 @@ private:
 	//Level * mLevel;
 	bool mLevelStarted;
 	int mCurrentStage;
-	int mPlayer1Score;
-	int mPlayer2Score;
+	
 	//Player * mPlayer;
 
 private:

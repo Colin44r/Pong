@@ -10,23 +10,31 @@ private:
 	Timer* mTimer;
 	GLTexture* mBall;
 
-	float XVelocity = 1.0;
-	float YVelocity = 1.0;
+	float mXVelocity = 1.0;
+	float mYVelocity = 1.0;
 
 	bool mWasHit;
 	float mMoveSpeed;
+	bool CanBeHit;
 
 	Vector2 mMoveBounds;
 	void HandleCollisions();
 	void HandleMovement();
-
+	
 
 public:
+
+
+	void SetXVelocity(float change);
+	void SetYVelocity(float change);
+
+	float GetXVelocity();
+	float GetYVelocity();
 
 	Ball(float movespeed);
 	~Ball();
 
-
+	void Hit(PhysEntity* other) override;
 
 	void Update() override;
 	void Render() override;

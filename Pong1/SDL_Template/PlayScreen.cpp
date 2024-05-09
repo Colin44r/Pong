@@ -23,7 +23,9 @@ PlayScreen::PlayScreen() {
 	mScorePlayer1 = new Scoreboard();
 	mScorePlayer2 = new Scoreboard();
 	mMiddleLine = new GLTexture("PongSpriteSheet.png", 288, 0, 39, 1029);
-	mBall = new Ball(400);
+	mBall = new Ball(200);
+	mGoalPosts = new GoalPosts(mLeftPaddle, mRightPaddle, mBall);
+	mGoalPosts2 = new GoalPosts(mLeftPaddle, mRightPaddle, mBall);
 	mGameOverScreen = new GLTexture("GameOverScreen.png");
 	mGameOverBlackScreen = new GLTexture("BlackScreen.png", 0, 0, 1267, 705);
 
@@ -31,8 +33,7 @@ PlayScreen::PlayScreen() {
 	mSideBar->Parent(this);
 	mSideBar->Position(Graphics::SCREEN_WIDTH * 0.87f, Graphics::SCREEN_HEIGHT * 0.05f);
 
-	mPlayer1Score = 0;
-	mPlayer2Score = 0;
+
 
 
 	mPlayerModes->Parent(this);
@@ -53,6 +54,9 @@ PlayScreen::PlayScreen() {
 	mBall->Position(75.0f, -50.0f);
 	mGameOverScreen->Position(0.0f, -50.0f);
 	mGameOverBlackScreen->Position(0.0f, -50.0f);
+	mGoalPosts->Position(0.0f, 425.0f);
+	mGoalPosts2 ->Position(1024.0f, 425.0f);
+
 
 	mGameOverScreen->Scale(Vector2(0.40f, 0.40f));
 	mGameOverBlackScreen->Scale(Vector2(2.40f, 2.40f));
@@ -103,9 +107,10 @@ PlayScreen::~PlayScreen() {
 	mGameOverScreen = nullptr;
 	delete mGameOverBlackScreen;
 	mGameOverBlackScreen = nullptr;
-
-	
-	
+	delete mGoalPosts;
+	mGoalPosts = nullptr;
+	delete mGoalPosts2;
+	mGoalPosts2 = nullptr;
 
 
 	//delete mStartLabel;
@@ -161,16 +166,16 @@ void PlayScreen::HandleCollisions() {
 void PlayScreen::Update() {
 
 
-	if (mPlayer2Score < 11 && mPlayer1Score <11){
+	if (mLeftPaddle->Score() < 11 && mRightPaddle->Score() <11){
 		mBall->Update();
 		mLeftPaddle->Update();
 		mRightPaddle->Update();
 	}
 
-	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_H)) {
-		mPlayer1Score++;
-		if (mPlayer1Score >= 11) {
-			mPlayer1Score = 11;
+	//if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_H)) {
+		//	mLeftPaddle->AddScore(1);
+		if (mLeftPaddle->Score() >= 11) {
+			mLeftPaddle->SetScore(11);
 			mDisplayGameOverScreen = true;
 			if (mGameOverTimer >= mTimerDuration) {
 				mGameOver = true; 
@@ -180,14 +185,14 @@ void PlayScreen::Update() {
 
 			}
 		}
-		mScorePlayer1->Score(mPlayer1Score);
+		mScorePlayer1->Score(mLeftPaddle->Score());
+		//TODO Refer to this to create a mCanBeHit Timer to make the bug of hitting the paddle 100 times fix even 0.25 seconds 
+	//}
 
-	}
-
-	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_G)) {
-		mPlayer2Score++;
-		if (mPlayer2Score >= 11) { 
-			mPlayer2Score = 11;
+	//if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_G)) {
+		//mRightPaddle->AddScore(1);
+		if (mRightPaddle->Score() >= 11) {
+			mRightPaddle->SetScore(11);
 			mDisplayGameOverScreen = true;
 			if (mGameOverTimer >= mTimerDuration) {
 				mGameOver = true;
@@ -198,8 +203,8 @@ void PlayScreen::Update() {
 			}
 			
 		}
-		mScorePlayer2->Score(mPlayer2Score);
-	}
+		mScorePlayer2->Score(mRightPaddle->Score());
+//	}
 
 	if (mGameStarted) {
 		
@@ -247,7 +252,9 @@ void PlayScreen::Render() {
 	mRightPaddle->Render();
 	mScorePlayer1->Render();
 	mScorePlayer2->Render();
-	
+	mGoalPosts->Render();
+	mGoalPosts2->Render();
+
 	if (mDisplayGameOverScreen == true) {
 		mGameOverBlackScreen->Render();
 		mGameOverScreen->Render();
