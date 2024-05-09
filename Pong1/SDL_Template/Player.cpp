@@ -146,7 +146,7 @@ void Player::Hit(PhysEntity * other) {
 	mLives -= 1;
 	//mAnimating = true;
 	//mDeathAnimation->ResetAnimation();
-	mAudio->PlaySFX("SFX/PlayerExplosion.wav");
+	mAudio->PlaySFX("SFX/PongHitNoise.mp3");
 	mWasHit = true;
 									//TODO CHange audio file to pong hit
 }
