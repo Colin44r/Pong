@@ -15,6 +15,7 @@ private:
 
 	bool mWasHit;
 	float mMoveSpeed;
+	bool CanBeHit;
 
 	Vector2 mMoveBounds;
 	void HandleCollisions();

@@ -103,7 +103,7 @@ Ball::Ball(float movespeed) {
 		void Ball::Update() {
 			mBall->Update();
 			HandleMovement();
-			
+			//mCanBeHit Timer 
 			
 
 
