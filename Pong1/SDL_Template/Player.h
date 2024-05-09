@@ -35,6 +35,9 @@ private:
 	//void HandleFiring();
 	bool mIsPlayer1;
 
+	
+
+
 public:
 	Player(bool mPlayer1);
 	~Player();
@@ -42,9 +45,11 @@ public:
 	void Visible(bool visible);
 	bool IsAnimating();
 
+	
 	int Score();
 	int Lives();
 
+	void SetScore(int change);
 	void AddScore(int change);
 
 	// Inherited from PhysEntity

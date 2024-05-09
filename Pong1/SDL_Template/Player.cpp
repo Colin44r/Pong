@@ -52,7 +52,8 @@ Player::Player(bool mPlayer1) {
 	mTimer = Timer::Instance();
 	mInput = InputManager::Instance();
 	mAudio = AudioManager::Instance();
-	
+	mName = "Player";
+
 
 	mVisible = false;
 //	mAnimating = false;
@@ -132,6 +133,10 @@ void Player::AddScore(int change) {
 	mScore += change;
 }
 
+void Player::SetScore(int change) {
+	mScore = change;
+}
+
 //bool Player::IgnoreCollisions()
 //{
 //	return !mVisible || mAnimating;
@@ -143,7 +148,7 @@ void Player::Hit(PhysEntity * other) {
 	//mDeathAnimation->ResetAnimation();
 	mAudio->PlaySFX("SFX/PlayerExplosion.wav");
 	mWasHit = true;
-	//TODO CHange audio file to pong hit
+									//TODO CHange audio file to pong hit
 }
 
 bool Player::WasHit() {
