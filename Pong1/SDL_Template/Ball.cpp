@@ -59,7 +59,7 @@ Ball::Ball(float movespeed) {
 	
 	mMoveSpeed = movespeed;
 	mMoveBounds = Vector2(-480.0f, 380.0f);
-	//TODO  no matter what numbers i put this was the closest i got to the box of the game... Ask calem for help
+	
 }
 
 

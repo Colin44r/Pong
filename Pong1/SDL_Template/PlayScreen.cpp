@@ -23,7 +23,7 @@ PlayScreen::PlayScreen() {
 	mScorePlayer1 = new Scoreboard();
 	mScorePlayer2 = new Scoreboard();
 	mMiddleLine = new GLTexture("PongSpriteSheet.png", 288, 0, 39, 1029);
-	mBall = new Ball(200);
+	mBall = new Ball(300);
 	mGoalPosts = new GoalPosts(mLeftPaddle, mRightPaddle, mBall);
 	mGoalPosts2 = new GoalPosts(mLeftPaddle, mRightPaddle, mBall);
 	mGameOverScreen = new GLTexture("GameOverScreen.png");

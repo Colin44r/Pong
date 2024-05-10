@@ -148,7 +148,7 @@ void Player::Hit(PhysEntity * other) {
 	//mDeathAnimation->ResetAnimation();
 	mAudio->PlaySFX("SFX/PongHitNoise.mp3");
 	mWasHit = true;
-									//TODO CHange audio file to pong hit
+									
 }
 
 bool Player::WasHit() {
