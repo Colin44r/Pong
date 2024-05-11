@@ -3,12 +3,16 @@
 #include "PhysicsHelper.h"
 #include "PhysicsManager.h"
 #include "Timer.h"
+#include "AudioManager.h"
 
 class Ball : public PhysEntity {
 private:
 	
+	AudioManager* mAudioBallHit;
 	Timer* mTimer;
 	GLTexture* mBall;
+	float mCanBeHit;
+	float mCannotBeHit;
 
 	float mXVelocity = 1.0;
 	float mYVelocity = 1.0;

@@ -24,6 +24,7 @@ private:
 
 	GoalPosts* mGoalPosts;
 	GoalPosts* mGoalPosts2;
+
 	Ball* mBall;
 
 	Scoreboard* mScorePlayer1;
@@ -50,7 +51,8 @@ private:
 	float mGameOverTimer;
 	float mTimerDuration;
 	bool mDisplayGameOverScreen;
-
+	float mCanBeHit;
+	float mCannotBeHit;
 public:
 	PlayScreen();
 	~PlayScreen();

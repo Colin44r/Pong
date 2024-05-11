@@ -58,7 +58,8 @@ Player::Player(bool mPlayer1) {
 	mVisible = false;
 //	mAnimating = false;
 	mWasHit = false;
-
+	mCanBeHit = 0;
+	mCannotBeHit = 0.50;
 	mScore = 0;
 	mLives = 2;
 	
@@ -78,18 +79,8 @@ Player::Player(bool mPlayer1) {
 
 
 
-	mMoveSpeed = 300.0f;
+	mMoveSpeed = 400.0f;
 	mMoveBounds = Vector2(-451.0f, 361.0f);
-
-	//mDeathAnimation = new AnimatedGLTexture("PlayerExplosion.png", 0, 0, 128, 128, 4, 1.0f, Animation::Layouts::Horizontal);
-	//mDeathAnimation->Parent(this);
-	//mDeathAnimation->Position(Vec2_Zero);
-	//mDeathAnimation->SetWrapMode(Animation::WrapModes::Once);
-
-	/*for (int i = 0; i < MAX_BULLETS; ++i) {
-		mBullets[i] = new Bullet(true);
-	}*/
-
 	AddCollider(new BoxCollider(Vector2(16.0f, 84.0f)));
 	
 
@@ -143,21 +134,37 @@ void Player::SetScore(int change) {
 //}
 
 void Player::Hit(PhysEntity * other) {
+	if(mWasHit == true){
+		return;
+    }
+
 	mLives -= 1;
-	//mAnimating = true;
-	//mDeathAnimation->ResetAnimation();
 	mAudio->PlaySFX("SFX/PongHitNoise.mp3");
 	mWasHit = true;
-									//TODO CHange audio file to pong hit
+									
 }
 
 bool Player::WasHit() {
-	return mWasHit;
+	if (!mWasHit) {
+		return mWasHit;
+	}
+	
 }
 
 void Player::Update() {
 	HandleMovement();
+	if (mWasHit) {
+		 
+		if (mCanBeHit >= mCannotBeHit) {
+				mWasHit = false;
+				mCanBeHit = 0;
+		}
+		else {
+				mCanBeHit += mTimer->DeltaTime();
 
+		}
+		
+	}
 }
 
 void Player::Render() {

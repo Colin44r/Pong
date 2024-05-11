@@ -16,6 +16,8 @@ private:
 	bool mVisible;
 	//bool mAnimating;
 	bool mWasHit;
+	float mCanBeHit;
+	float mCannotBeHit;
 
 	int mScore;
 	int mLives;
