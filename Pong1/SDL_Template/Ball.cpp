@@ -13,6 +13,11 @@ float Ball::GetXVelocity() {
 }
 
 void Ball::Hit(PhysEntity* other) {
+	if (mWasHit == true) {
+		return;
+	}
+	mWasHit = true;
+
 	if (other->GetName()=="Player") {
 	
 		if (mXVelocity == 1) {
@@ -41,7 +46,10 @@ void Ball::SetYVelocity(float change) {
 
 Ball::Ball(float movespeed) {
 	
+	mCanBeHit = 0;
+	mCannotBeHit = 0.50;
 
+	mAudioBallHit = AudioManager::Instance();
 	AddCollider(new BoxCollider(Vector2(25.0F, 25.0F)));
 	mWasHit = false;
 	mTimer = Timer::Instance();
@@ -70,10 +78,12 @@ Ball::Ball(float movespeed) {
 
 		Vector2 pos = Position(Local);
 		if (pos.y <= mMoveBounds.x) {
-			mYVelocity = 1;
+			mYVelocity = 1.2;
+			mAudioBallHit->PlaySFX("SFX/PongHitNoise.mp3");
 		}
 		 if (pos.y >= mMoveBounds.y) {
-			mYVelocity = -1;
+			mYVelocity = -1.2;
+			mAudioBallHit->PlaySFX("SFX/PongHitNoise.mp3");
 		}
 		/*if (pos.x <= mMoveBounds.x) {
 			XVelocity = 1;
@@ -104,7 +114,18 @@ Ball::Ball(float movespeed) {
 			mBall->Update();
 			HandleMovement();
 			//mCanBeHit Timer 
-			
+			if (mWasHit) {
+
+				if (mCanBeHit >= mCannotBeHit) {
+					mWasHit = false;
+					mCanBeHit = 0;
+				}
+				else {
+					mCanBeHit += mTimer->DeltaTime();
+
+				}
+
+			}
 
 
 		}
