@@ -35,17 +35,6 @@ void Player::HandleMovement() {
 	Position(pos);
 }
 
-//void Player::HandleFiring() {
-//	if (mInput->KeyPressed(SDL_SCANCODE_SPACE)) {
-//		for (int i = 0; i < MAX_BULLETS; ++i) {
-//			if (!mBullets[i]->Active()) {
-//				mBullets[i]->Fire(Position());
-//				mAudio->PlaySFX("SFX/Fire.wav");
-//				break;
-//			}
-//		}
-//	}
-//}
 
 Player::Player(bool mPlayer1) {
 	mIsPlayer1 = mPlayer1;
@@ -54,9 +43,7 @@ Player::Player(bool mPlayer1) {
 	mAudio = AudioManager::Instance();
 	mName = "Player";
 
-
 	mVisible = false;
-//	mAnimating = false;
 	mWasHit = false;
 	mCanBeHit = 0;
 	mCannotBeHit = 0.50;
@@ -79,7 +66,7 @@ Player::Player(bool mPlayer1) {
 
 
 
-	mMoveSpeed = 400.0f;
+	mMoveSpeed = 450.0f;
 	mMoveBounds = Vector2(-451.0f, 361.0f);
 	AddCollider(new BoxCollider(Vector2(16.0f, 84.0f)));
 	
@@ -91,26 +78,15 @@ Player::~Player() {
 	mTimer = nullptr;
 	mInput = nullptr;
 	mAudio = nullptr;
-
 	delete mRightPaddle;
 	mRightPaddle = nullptr;
 	delete mLeftPaddle;
 	mLeftPaddle = nullptr;
-//	delete mDeathAnimation;
-	//mDeathAnimation = nullptr;
-
-	/*for (auto b : mBullets) {
-		delete b;
-	}*/
 }
 
 void Player::Visible(bool visible) {
 	mVisible = visible;
 }
-//
-//bool Player::IsAnimating() {
-//	return mAnimating;
-//}
 
 int Player::Score() {
 	return mScore;
@@ -127,11 +103,6 @@ void Player::AddScore(int change) {
 void Player::SetScore(int change) {
 	mScore = change;
 }
-
-//bool Player::IgnoreCollisions()
-//{
-//	return !mVisible || mAnimating;
-//}
 
 void Player::Hit(PhysEntity * other) {
 	if(mWasHit == true){

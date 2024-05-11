@@ -104,6 +104,8 @@ void PlayScreen::StartNewGame() {
 	mGameStarted = false;
 	mLevelStarted = false;
 	mCurrentStage = 0;
+	mLeftPaddle->Position(-450.0f, -50.0f);
+	mRightPaddle->Position(450.0f, -50.0f);
 }
 
 bool PlayScreen::GameOver() {

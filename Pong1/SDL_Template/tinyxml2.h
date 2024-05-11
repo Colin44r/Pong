@@ -42,17 +42,6 @@ distribution.
 #endif
 #include <stdint.h>
 
-/*
-   TODO: intern strings instead of allocation. <<<<< I Think this was not ours
-*/
-/*
-	gcc:
-        g++ -Wall -DTINYXML2_DEBUG tinyxml2.cpp xmltest.cpp -o gccxmltest.exe
-
-    Formatting, Artistic Style:
-        AStyle.exe --style=1tbs --indent-switches --break-closing-brackets --indent-preprocessor tinyxml2.cpp tinyxml2.h
-*/
-
 #if defined( _DEBUG ) || defined (__DEBUG__)
 #   ifndef TINYXML2_DEBUG
 #       define TINYXML2_DEBUG
