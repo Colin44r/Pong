@@ -25,9 +25,13 @@ private:
 	Vector2 mCursorOffset;
 	int mSelectedMode;
 	GameEntity* mBottomBar;
-	GLTexture* mPlayWhiteBox;
+	GLTexture* mWhiteRectangle;
+	GLTexture* mWhiteRectangle2;
+	GLTexture* mWhiteRectangle3;
+	GLTexture* mFirstMode;
+	GLTexture* mSecondMode;
 	GLTexture* mPongTitle;
-	GLTexture* mPlayButton;
+	GLTexture* mThirdMode;
 	Vector2 mAnimationStartPos;
 	Vector2 mAnimationEndPos;
 	float mAnimationTotalTime;
