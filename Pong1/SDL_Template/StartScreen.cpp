@@ -18,6 +18,7 @@ StartScreen::StartScreen() {
 	mWhiteRectangle = new GLTexture("PongSpriteSheet.png", 360, 94, 64, 227);
 	mWhiteRectangle2 = new GLTexture("PongSpriteSheet.png", 360, 94, 64, 227);
 	mWhiteRectangle3 = new GLTexture("PongSpriteSheet.png", 360, 94, 64, 227);
+	mCursor = new GLTexture("Cursor.png", 0,0,31,28 );
 
 	mBottomBar->Parent(this);
 	mPongTitle->Parent(mBottomBar);
@@ -36,7 +37,9 @@ StartScreen::StartScreen() {
 	mWhiteRectangle -> Parent(mPlayerModes);
 	mWhiteRectangle2->Parent(mPlayerModes);
 	mWhiteRectangle3->Parent(mPlayerModes);
+	mCursor->Parent(mPlayerModes);
 
+	mCursor->Position(-245.0, -50.0f);
 	mWhiteRectangle->Position(-18.0f, -50.0f);
 	mWhiteRectangle2->Position(-5.0f, 40.0f);
 	mWhiteRectangle3->Position(0.0f, 130.0f);
@@ -47,16 +50,16 @@ StartScreen::StartScreen() {
 	mRightPaddle->Position(450.0f, -50.0f);
 	mPongTitle->Position(-825.0f, -350.0f);
 
-	
-
-
+	mCursor->Scale(Vector2(1.5f, 1.5f));
 	mPongTitle->Scale(Vector2(1.5f, 1.0f));
 	mRightPaddle->Scale(Vector2(0.25f, 0.15f));
 	mLeftPaddle->Scale(Vector2(0.25f, 0.15f));
-
 	mWhiteRectangle->Scale(Vector2(1.0f, 1.1f));
 	mWhiteRectangle2->Scale(Vector2(1.0f, 1.28f));
 	mWhiteRectangle3->Scale(Vector2(1.0f, 1.42f));
+
+	mCursorStartPos = mCursor->Position(Local);
+	mCursorOffset = Vector2(0, 90);
 }
 
 StartScreen::~StartScreen() {
@@ -86,6 +89,8 @@ StartScreen::~StartScreen() {
 	mWhiteRectangle2 = nullptr;
 	delete 	mWhiteRectangle3;
 	mWhiteRectangle3 = nullptr;
+	delete mCursor;
+	mCursor = nullptr;
 
 }
 
@@ -97,11 +102,20 @@ void StartScreen::ChangeSelectedMode(int change) {
 	mSelectedMode += change;
 
 	if (mSelectedMode < 0) {
-		mSelectedMode = 1;
+		mSelectedMode = 2;
 	}
-	else if (mSelectedMode > 1) {
+	else if (mSelectedMode > 2) {
 		mSelectedMode = 0;
 	}
+	
+	// First make a "getter" for mselected mode and send it to screenmanger line 91-93 in player.cpp 
+	// create a setter in playscreen grabing the value from screen manger of the getter. 
+	// Refer to player.h and .cpp "GetScore" and GetLives
+	// 
+	// 0 = firstmode
+	// 1 = second mode
+	// 2 = thrid mode
+	mCursor->Position(mCursorStartPos + mCursorOffset * (float)mSelectedMode);
 }
 
 void StartScreen::Update() {
@@ -116,6 +130,7 @@ void StartScreen::Update() {
 }
 
 void StartScreen::Render() {
+	
 	mWhiteRectangle->Render();
 	mWhiteRectangle2->Render();
 	mWhiteRectangle3->Render();
@@ -125,6 +140,6 @@ void StartScreen::Render() {
 	mRightPaddle->Render();
 	mThirdMode->Render();
 	mPongTitle->Render();
-
+	mCursor->Render();
 }
 
