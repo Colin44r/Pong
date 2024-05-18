@@ -118,6 +118,10 @@ void StartScreen::ChangeSelectedMode(int change) {
 	mCursor->Position(mCursorStartPos + mCursorOffset * (float)mSelectedMode);
 }
 
+int StartScreen::GetSelectedMode() {
+	return mSelectedMode;
+}
+
 void StartScreen::Update() {
 
 

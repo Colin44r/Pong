@@ -117,16 +117,21 @@ void PlayScreen::HandleCollisions() {
 	
 }
 
+void PlayScreen::SetSelectedMode(int change) {
+	mSelectedMode = change;
+	std::cout << "Mode Selected " <<mSelectedMode << std::endl;
+}
+
 void PlayScreen::Update() {
 
 
-	if (mLeftPaddle->Score() < 11 && mRightPaddle->Score() <11){
+	if (mLeftPaddle->GetScore() < 11 && mRightPaddle->GetScore() <11){
 		mBall->Update();
 		mLeftPaddle->Update();
 		mRightPaddle->Update();
 	}
 
-	if (mLeftPaddle->Score() >= 11) {
+	if (mLeftPaddle->GetScore() >= 11) {
 			mLeftPaddle->SetScore(11);
 			mDisplayGameOverScreen = true;
 			
@@ -140,11 +145,9 @@ void PlayScreen::Update() {
 				
 		}
 	}
-		mScorePlayer1->Score(mLeftPaddle->Score());
+		mScorePlayer1->Score(mLeftPaddle->GetScore());
 
-
-
-	if (mRightPaddle->Score() >= 11) {
+	if (mRightPaddle->GetScore() >= 11) {
 		mRightPaddle->SetScore(11);
 		mDisplayGameOverScreen = true;
 		
@@ -158,7 +161,25 @@ void PlayScreen::Update() {
 		}
 			
 	}
-		mScorePlayer2->Score(mRightPaddle->Score());
+		mScorePlayer2->Score(mRightPaddle->GetScore());
+
+		if (mSelectedMode == 0) {
+		
+		
+		
+		}
+
+		else if (mSelectedMode == 1) {
+
+
+
+		}
+
+		else if (mSelectedMode == 2) {
+
+
+
+		}
 
 
 	if (mGameStarted) {

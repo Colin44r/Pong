@@ -37,8 +37,8 @@ public:
 
 	void Visible(bool visible);
 	bool IsAnimating();
-	int Score();
-	int Lives();
+	int GetScore();
+	int GetLives();
 	void SetScore(int change);
 	void AddScore(int change);
 	void Hit(PhysEntity * other) override;

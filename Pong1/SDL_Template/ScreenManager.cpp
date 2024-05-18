@@ -23,6 +23,8 @@ void ScreenManager::Update() {
 
 		if (mInput->KeyPressed(SDL_SCANCODE_RETURN)) {
 			mCurrentScreen = Play;
+			mStartScreen->GetSelectedMode();
+			mPlayScreen->SetSelectedMode(mStartScreen->GetSelectedMode());
 			mPlayScreen->StartNewGame();
 			
 		}

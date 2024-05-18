@@ -88,11 +88,11 @@ void Player::Visible(bool visible) {
 	mVisible = visible;
 }
 
-int Player::Score() {
+int Player::GetScore() {
 	return mScore;
 }
 
-int Player::Lives() {
+int Player::GetLives() {
 	return mLives;
 }
 

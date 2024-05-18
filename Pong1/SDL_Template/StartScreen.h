@@ -45,6 +45,7 @@ public:
 	void ChangeSelectedMode(int change);
 	void ResetAnimation();
 
+	int GetSelectedMode();
 	void Update() override;
 	void Render() override;
 };
