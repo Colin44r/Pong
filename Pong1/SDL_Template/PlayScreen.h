@@ -28,7 +28,7 @@ private:
 	bool mPlayer2Hit;
 	bool mLevelStarted;
 	int mCurrentStage;
-	
+	int mSelectedMode;
 	
 
 private:
@@ -45,6 +45,7 @@ public:
 	~PlayScreen();
 	void StartNewGame();
 	bool GameOver();
+	void SetSelectedMode(int change);
 	void Update() override;
 	void Render() override;
 };
