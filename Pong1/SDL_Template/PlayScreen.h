@@ -20,6 +20,7 @@ private:
 	GoalPosts* mGoalPosts;
 	GoalPosts* mGoalPosts2;
 	Ball* mBall;
+	Ball* mBall2;
 	Scoreboard* mScorePlayer1;
 	Scoreboard* mScorePlayer2;
 
