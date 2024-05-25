@@ -56,7 +56,7 @@ ScreenManager::ScreenManager() {
 	mStartScreen = new StartScreen();
 	mPlayScreen = new PlayScreen();
 
-	mCurrentScreen = Start;
+	mCurrentScreen = Start; 
 
 }
 
