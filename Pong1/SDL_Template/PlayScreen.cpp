@@ -23,7 +23,7 @@ PlayScreen::PlayScreen() {
 	mMiddleLine = new GLTexture("PongSpriteSheet.png", 288, 0, 39, 1029);
 	mBall = new Ball(450,"Ball1");
 	mBall2 = new Ball(550,"Ball2");
-	mBall3 = new Ball(350,"Ball3");
+	mBall3 = new Ball(350,"Ball3"); // Ball speeds
 	mGoalPosts = new GoalPosts(mLeftPaddle, mRightPaddle, mBall, mBall2, mBall3);
 	mGoalPosts2 = new GoalPosts(mLeftPaddle, mRightPaddle, mBall, mBall2, mBall3);
 	mGameOverScreen = new GLTexture("GameOverScreen.png");
@@ -191,7 +191,7 @@ void PlayScreen::Update() {
 			mBall2->Update();
 			mBall3->Update();
 			mLeftPaddle->SetMoveSpeed(750);
-			mRightPaddle->SetMoveSpeed(750);
+			mRightPaddle->SetMoveSpeed(750); // Paddle speeds
 		}
 
 
