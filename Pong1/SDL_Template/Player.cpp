@@ -237,10 +237,11 @@ void Player::Hit(PhysEntity * other) {
 		return;
     }
 
+	mSelectedColor = Random::Instance()->RandomRange(0, 10);
+	mSelectedColor2 = Random::Instance()->RandomRange(0, 10);
 	mLives -= 1;
 	mAudio->PlaySFX("SFX/PongHitNoise.mp3");
 	mWasHit = true;
-	mSelectedColor = Random::Instance()->RandomRange(0, 10);
 
 }
 
@@ -309,38 +310,49 @@ void Player::Render() {
 
 	}
 	else{
-		if (mSelectedColor == 0) {
+		if (mSelectedColor2 == 0) {
 			mLeftPaddle->Render();
 
 		}
-		else if (mSelectedColor == 1) {
+		else if (mSelectedColor2 == 1) {
+			std::cout << "lpink" << std::endl;
 			mLeftPaddlePink->Render();
+			
 		}
-		else if (mSelectedColor == 2) {
+		else if (mSelectedColor2 == 2) {
+			std::cout << "lred" << std::endl;
 			mLeftPaddleRed->Render();
 		}
-		else if (mSelectedColor == 3) {
+		else if (mSelectedColor2 == 3) {
+			std::cout << "lblue" << std::endl;
 			mLeftPaddleBlue->Render();
 		}
-		else if (mSelectedColor == 4) {
+		else if (mSelectedColor2 == 4) {
+			std::cout << "lgreen" << std::endl;
 			mLeftPaddleGreen->Render();
 		}
-		else if (mSelectedColor == 5) {
-			mRightPaddlePurple->Render();
+		else if (mSelectedColor2 == 5) {
+			std::cout << "lpruple" << std::endl;
+			mLeftPaddlePurple->Render();
 		}
-		else if (mSelectedColor == 6) {
+		else if (mSelectedColor2 == 6) {
+			std::cout << "lorange" << std::endl;
 			mLeftPaddleOrange->Render();
 		}
-		else if (mSelectedColor == 7) {
+		else if (mSelectedColor2 == 7) {
+			std::cout << "lcyan" << std::endl;
 			mLeftPaddleCyan->Render();
 		}
-		else if (mSelectedColor == 8) {
+		else if (mSelectedColor2 == 8) {
+			std::cout << "lYellow" << std::endl;
 			mLeftPaddleYellow->Render();
 		}
-		else if (mSelectedColor == 9) {
+		else if (mSelectedColor2 == 9) {
+			std::cout << "lMaroon" << std::endl;
 			mLeftPaddleMaroon->Render();
 		}
-		else if (mSelectedColor == 10) {
+		else if (mSelectedColor2 == 10) {
+			std::cout << "lNeonGreen" << std::endl;
 			mLeftPaddleNeonGreen->Render();
 		}
 		

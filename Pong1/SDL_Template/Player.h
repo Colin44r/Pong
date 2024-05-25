@@ -22,6 +22,7 @@ private:
 	int mScore;
 	int mLives;
 	int mSelectedColor;
+	int mSelectedColor2;
 
 	Texture * mRightPaddle;
 	Texture* mLeftPaddle;
