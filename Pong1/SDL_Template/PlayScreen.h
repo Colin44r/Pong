@@ -21,6 +21,9 @@ private:
 	GoalPosts* mGoalPosts2;
 	Ball* mBall;
 	Ball* mBall2;
+
+	Ball* mBall3;
+
 	Scoreboard* mScorePlayer1;
 	Scoreboard* mScorePlayer2;
 
@@ -36,6 +39,7 @@ private:
 	void StartNextLevel();
 	void HandleCollisions();
 	bool mGameOver;
+	bool mSpawnBalls;
 	float mGameOverTimer;
 	float mTimerDuration;
 	bool mDisplayGameOverScreen;

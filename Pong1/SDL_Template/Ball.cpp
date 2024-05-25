@@ -43,7 +43,7 @@ void Ball::SetYVelocity(float change) {
 	mYVelocity = change;
 }
 
-Ball::Ball(float movespeed) {
+Ball::Ball(float movespeed, std:: string name) {
 	
 	mCanBeHit = 0;
 	mCannotBeHit = 0.50;
@@ -57,7 +57,7 @@ Ball::Ball(float movespeed) {
 		mBall->Parent(this);
 		mBall->Position(0.0f, 0.0f);
 		mBall->Scale(Vector2(0.40f, 0.40f));
-		mName = "Ball";
+		mName = name;
 	mMoveSpeed = movespeed;
 	mMoveBounds = Vector2(-480.0f, 380.0f);
 }

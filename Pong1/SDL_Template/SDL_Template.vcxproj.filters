@@ -168,6 +168,9 @@
     <ClCompile Include="GoalPosts.cpp">
       <Filter>Source Files\Galaga</Filter>
     </ClCompile>
+    <ClCompile Include="NewLevel.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEntity.h">
@@ -295,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="GoalPosts.h">
       <Filter>Header Files\Galaga</Filter>
+    </ClInclude>
+    <ClInclude Include="NewLevel.h">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
