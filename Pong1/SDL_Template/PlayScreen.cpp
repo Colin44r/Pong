@@ -20,12 +20,14 @@ PlayScreen::PlayScreen() {
 	mRightPaddle = new Player(true);
 	mScorePlayer1 = new Scoreboard();
 	mScorePlayer2 = new Scoreboard();
+
 	mMiddleLine = new GLTexture("PongSpriteSheet.png", 288, 0, 39, 1029);
 	mBall = new Ball(450,"Ball1");
 	mBall2 = new Ball(550,"Ball2");
 	mBall3 = new Ball(350,"Ball3"); // Ball speeds
 	mGoalPosts = new GoalPosts(mLeftPaddle, mRightPaddle, mBall, mBall2, mBall3);
 	mGoalPosts2 = new GoalPosts(mLeftPaddle, mRightPaddle, mBall, mBall2, mBall3);
+
 	mGameOverScreen = new GLTexture("GameOverScreen.png");
 	mGameOverBlackScreen = new GLTexture("BlackScreen.png", 0, 0, 1267, 705);
 
@@ -41,7 +43,9 @@ PlayScreen::PlayScreen() {
 	mMiddleLine->Parent(mPlayerModes);
 	mBall->Parent(mPlayerModes);
 	mBall2->Parent(mPlayerModes);
+
 	mBall3->Parent(mPlayerModes);
+
 	mGameOverScreen->Parent(mPlayerModes);
 	mGameOverBlackScreen->Parent(mPlayerModes);
 
@@ -51,8 +55,11 @@ PlayScreen::PlayScreen() {
 	mScorePlayer2->Position(130.0f, -350.0f);
 	mMiddleLine->Position(0.0f, -50.0f);
 	mBall->Position(75.0f, -50.0f);
+
+
 	mBall2->Position(90.0f, -10.0f);
 	mBall3->Position(85.0f, -20.0f); // Change numbers for new balls to change direction
+
 	mGameOverScreen->Position(0.0f, -50.0f);
 	mGameOverBlackScreen->Position(0.0f, -50.0f);
 	mGoalPosts->Position(0.0f, 425.0f);
@@ -99,6 +106,8 @@ PlayScreen::~PlayScreen() {
 	mGoalPosts = nullptr;
 	delete mGoalPosts2;
 	mGoalPosts2 = nullptr;
+	delete mBall2;
+	mBall2 = nullptr;
 
 }
 
@@ -175,16 +184,19 @@ void PlayScreen::Update() {
 
 
 		if (mSelectedMode == 0) {
-		
-		
-		
+
 		}
 
 		else if (mSelectedMode == 1) {
+		/*	
+				if (mWasHit == true) {
+					return;
+				}
+				mWasHit = true;*/
+
+				
 
 
-
-		}
 
 		else if (mSelectedMode == 2) {
 			//if (mSpawnBalls = true);
@@ -192,6 +204,7 @@ void PlayScreen::Update() {
 			mBall3->Update();
 			mLeftPaddle->SetMoveSpeed(750);
 			mRightPaddle->SetMoveSpeed(750); // Paddle speeds
+
 		}
 
 
@@ -220,7 +233,24 @@ void PlayScreen::Render() {
 		}
 	}
 
+
+
+
 	if (mSelectedMode == 0) {
+
+	}
+
+	else if (mSelectedMode == 1) {
+		
+
+
+	}
+
+	else if (mSelectedMode == 2) {
+		mBall2->Render();
+
+	}
+	
 
 
 

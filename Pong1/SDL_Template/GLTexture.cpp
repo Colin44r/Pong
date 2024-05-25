@@ -30,6 +30,18 @@ namespace SDLFramework {
 		FilterMin = GL_LINEAR;
 	}
 
+	GLTexture::GLTexture(std::string filename, int x, int y, int w, int h, SDL_Color color, bool managed)
+		: Texture(filename, x, y, w, h, color, managed) {
+		SetSurfaceTexture(filename, color, managed);
+		Data = Surface->pixels;
+
+		WrapS = GL_CLAMP_TO_BORDER;
+		WrapT = GL_CLAMP_TO_BORDER;
+
+		FilterMag = GL_LINEAR;
+		FilterMin = GL_LINEAR;
+	}
+
 	GLTexture::GLTexture(std::string text, std::string fontPath, int size, SDL_Color color, bool managed)
 		: Texture(text, fontPath, size, color, managed) { 
 		SetSurfaceTextTexture(text, fontPath, size, color, managed);
@@ -92,6 +104,16 @@ namespace SDLFramework {
 
 	void GLTexture::SetSurfaceTexture(std::string filename, bool managed) {
 		Surface = AssetManager::Instance()->GetSurface(filename, managed);
+		Data = Surface->pixels;
+		if (Surface != nullptr) {
+			Generate();
+		}
+		else {
+			std::cerr << "Unable to set surface " << filename << " in GLTexture! Surface is null." << std::endl;
+		}
+	}
+	void GLTexture::SetSurfaceTexture(std::string filename,SDL_Color color, bool managed) {
+		Surface = AssetManager::Instance()->GetSurface(filename, color, managed);
 		Data = Surface->pixels;
 		if (Surface != nullptr) {
 			Generate();
