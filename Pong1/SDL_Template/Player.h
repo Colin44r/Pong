@@ -4,6 +4,7 @@
 #include "AudioManager.h"
 #include "InputManager.h"
 #include "Bullet.h"
+#include "Random.h"
 
 using namespace SDLFramework;
 
@@ -20,10 +21,31 @@ private:
 
 	int mScore;
 	int mLives;
+	int mSelectedColor;
 
 	Texture * mRightPaddle;
 	Texture* mLeftPaddle;
-	
+	Texture* mRightPaddleRed;
+	Texture* mRightPaddleBlue;
+	Texture* mRightPaddleGreen;
+	Texture* mRightPaddlePurple;
+	Texture* mRightPaddleOrange;
+	Texture* mRightPaddleCyan;
+	Texture* mRightPaddleYellow;
+	Texture* mRightPaddleMaroon;
+	Texture* mRightPaddleNeonGreen;
+	Texture* mRightPaddlePink;
+	Texture* mLeftPaddleRed;
+	Texture* mLeftPaddleBlue;
+	Texture* mLeftPaddleGreen;
+	Texture* mLeftPaddlePurple;
+	Texture* mLeftPaddleOrange;
+	Texture* mLeftPaddleCyan;
+	Texture* mLeftPaddleYellow;
+	Texture* mLeftPaddleMaroon;
+	Texture* mLeftPaddleNeonGreen;
+	Texture* mLeftPaddlePink;
+
 	float mMoveSpeed;
 	Vector2 mMoveBounds;
 
