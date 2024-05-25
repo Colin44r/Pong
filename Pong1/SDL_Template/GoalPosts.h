@@ -12,13 +12,15 @@ class GoalPosts : public PhysEntity {
 	Player* mLeftPaddle;
 	Player* mRightPaddle;
 	Ball* mBall;
+	Ball* mBall2;
+	Ball* mBall3;
 	bool mWasHit;
 	float mCanBeHit;
 	float mCannotBeHit;
 
 public:
 
-	GoalPosts(Player* mLeftPlayer, Player* mRightPlayer, Ball* Ball);
+	GoalPosts(Player* mLeftPlayer, Player* mRightPlayer, Ball* ball, Ball* Ball2, Ball* Ball3);
 	void Hit(PhysEntity* other) override;
 
 	void Update() override;

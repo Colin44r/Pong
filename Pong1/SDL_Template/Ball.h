@@ -35,7 +35,7 @@ public:
 	float GetXVelocity();
 	float GetYVelocity();
 
-	Ball(float movespeed);
+	Ball(float movespeed, std::string name);
 	~Ball();
 
 	void Hit(PhysEntity* other) override;

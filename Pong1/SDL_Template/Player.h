@@ -45,5 +45,6 @@ public:
 	bool WasHit();
 	void Update() override;
 	void Render() override;
+	void SetMoveSpeed(float change);
 };
 #endif

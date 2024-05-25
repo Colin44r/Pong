@@ -104,6 +104,10 @@ void Player::SetScore(int change) {
 	mScore = change;
 }
 
+void Player::SetMoveSpeed(float change) {
+	mMoveSpeed = change;
+}
+
 void Player::Hit(PhysEntity * other) {
 	if(mWasHit == true){
 		return;
