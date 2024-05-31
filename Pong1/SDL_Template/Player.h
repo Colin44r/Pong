@@ -14,15 +14,19 @@ private:
 	InputManager * mInput;
 	AudioManager * mAudio;
 
+	bool mColourChange;
 	bool mVisible;
 	bool mWasHit;
 	float mCanBeHit;
 	float mCannotBeHit;
+	float mCannotBeHitColour;
+	float mFlashingLightsTimer;
 
 	int mScore;
 	int mLives;
 	int mSelectedColor;
 	int mSelectedColor2;
+	int mSelectedMode;
 
 	Texture * mRightPaddle;
 	Texture* mLeftPaddle;
@@ -69,5 +73,6 @@ public:
 	void Update() override;
 	void Render() override;
 	void SetMoveSpeed(float change);
+	void SetSelectedMode(int change);
 };
 #endif

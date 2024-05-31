@@ -15,6 +15,14 @@ private:
 	Player* mLeftPaddle;
 	Player* mRightPaddle;
 	Texture* mMiddleLine;
+	Texture* mMiddleLine1;
+	Texture* mMiddleLine2;
+	Texture* mMiddleLine3;
+	Texture* mMiddleLine4;
+	Texture* mMiddleLine5;
+	Texture* mMiddleLine6;
+	Texture* mMiddleLine7;
+	Texture* mMiddleLine8;
 	Texture* mGameOverScreen;
 	Texture* mGameOverBlackScreen;
 	GoalPosts* mGoalPosts;
@@ -33,7 +41,14 @@ private:
 	bool mLevelStarted;
 	int mCurrentStage;
 	int mSelectedMode;
-	
+	int mMiddleLineChange;
+	float mCannotBeHitColour;
+	float mFlashingLightsTimer;
+	bool mColourChange;
+	int mSelectedColor;
+	int mSelectedColor2;
+	float mTimerColorLoop;
+	float mTimerColorLoop2;
 
 private:
 	void StartNextLevel();

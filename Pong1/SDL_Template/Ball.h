@@ -4,6 +4,7 @@
 #include "PhysicsManager.h"
 #include "Timer.h"
 #include "AudioManager.h"
+#include "Random.h"
 
 class Ball : public PhysEntity {
 private:
@@ -11,6 +12,16 @@ private:
 	AudioManager* mAudioBallHit;
 	Timer* mTimer;
 	GLTexture* mBall;
+	GLTexture* mBall1;
+	GLTexture* mBall2;
+	GLTexture* mBall3;
+	GLTexture* mBall4;
+	GLTexture* mBall5;
+	GLTexture* mBall6;
+	GLTexture* mBall7;
+	GLTexture* mBall8;
+	GLTexture* mBall9;
+	GLTexture* mBall10;
 	float mCanBeHit;
 	float mCannotBeHit;
 
@@ -19,7 +30,13 @@ private:
 
 	bool mWasHit;
 	float mMoveSpeed;
-	bool CanBeHit;
+	bool mColourChange;
+	float mCannotBeHitColour;
+	float mFlashingLightsTimer;
+	int mSelectedColor;
+	int mSelectedColor2;
+	int mSelectedMode;
+	
 
 	Vector2 mMoveBounds;
 	void HandleCollisions();
@@ -42,7 +59,7 @@ public:
 
 	void Update() override;
 	void Render() override;
-
+	void SetSelectedMode(int change);
 
 
 
