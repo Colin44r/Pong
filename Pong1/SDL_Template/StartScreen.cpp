@@ -98,6 +98,8 @@ void StartScreen::ResetAnimation() {
 
 }
 
+
+
 void StartScreen::ChangeSelectedMode(int change) {
 	mSelectedMode += change;
 

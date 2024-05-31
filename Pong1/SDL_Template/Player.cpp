@@ -39,6 +39,8 @@ void Player::HandleMovement() {
 
 
 Player::Player(bool mPlayer1) {
+	mColourChange = false;
+	mSelectedMode = 0;
 	mIsPlayer1 = mPlayer1;
 	mTimer = Timer::Instance();
 	mInput = InputManager::Instance();
@@ -49,6 +51,9 @@ Player::Player(bool mPlayer1) {
 	mWasHit = false;
 	mCanBeHit = 0;
 	mCannotBeHit = 0.50;
+	mCannotBeHitColour = 2.0;
+	mFlashingLightsTimer = 0.0;
+	
 	mScore = 0;
 	mLives = 2;
 	
@@ -232,30 +237,38 @@ void Player::SetMoveSpeed(float change) {
 	mMoveSpeed = change;
 }
 
+void Player::SetSelectedMode(int change) {
+	mSelectedMode = change;
+
+}
+
 void Player::Hit(PhysEntity * other) {
 	if(mWasHit == true){
 		return;
     }
+	
+	
 
-	mSelectedColor = Random::Instance()->RandomRange(0, 10);
-	mSelectedColor2 = Random::Instance()->RandomRange(0, 10);
+	
 	mLives -= 1;
 	mAudio->PlaySFX("SFX/PongHitNoise.mp3");
 	mWasHit = true;
-
+	mColourChange = true;
 }
 
 bool Player::WasHit() {
 	if (!mWasHit) {
 		return mWasHit;
-	}
 	
+	}
+
 }
 
 void Player::Update() {
 	HandleMovement();
 	if (mWasHit) {
-		
+	
+
 
 		if (mCanBeHit >= mCannotBeHit) {
 				mWasHit = false;
@@ -266,6 +279,27 @@ void Player::Update() {
 
 		}
 		
+		
+	}
+
+	if (mSelectedMode == 1) {
+		if (mColourChange) {
+
+			mSelectedColor = Random::Instance()->RandomRange(1, 10);
+			mSelectedColor2 = Random::Instance()->RandomRange(1, 10);
+	
+			if (mFlashingLightsTimer >= mCannotBeHitColour) {
+				mColourChange = false;
+				mFlashingLightsTimer = 0;
+
+			}
+			else {
+				mFlashingLightsTimer += mTimer->DeltaTime();
+
+			}
+
+
+		}
 	}
 }
 
@@ -315,44 +349,34 @@ void Player::Render() {
 
 		}
 		else if (mSelectedColor2 == 1) {
-			std::cout << "lpink" << std::endl;
 			mLeftPaddlePink->Render();
 			
 		}
 		else if (mSelectedColor2 == 2) {
-			std::cout << "lred" << std::endl;
 			mLeftPaddleRed->Render();
 		}
 		else if (mSelectedColor2 == 3) {
-			std::cout << "lblue" << std::endl;
 			mLeftPaddleBlue->Render();
 		}
 		else if (mSelectedColor2 == 4) {
-			std::cout << "lgreen" << std::endl;
 			mLeftPaddleGreen->Render();
 		}
 		else if (mSelectedColor2 == 5) {
-			std::cout << "lpruple" << std::endl;
 			mLeftPaddlePurple->Render();
 		}
 		else if (mSelectedColor2 == 6) {
-			std::cout << "lorange" << std::endl;
 			mLeftPaddleOrange->Render();
 		}
 		else if (mSelectedColor2 == 7) {
-			std::cout << "lcyan" << std::endl;
 			mLeftPaddleCyan->Render();
 		}
 		else if (mSelectedColor2 == 8) {
-			std::cout << "lYellow" << std::endl;
 			mLeftPaddleYellow->Render();
 		}
 		else if (mSelectedColor2 == 9) {
-			std::cout << "lMaroon" << std::endl;
 			mLeftPaddleMaroon->Render();
 		}
 		else if (mSelectedColor2 == 10) {
-			std::cout << "lNeonGreen" << std::endl;
 			mLeftPaddleNeonGreen->Render();
 		}
 		
