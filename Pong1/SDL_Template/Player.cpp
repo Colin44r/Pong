@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "BoxCollider.h"
 #include "PhysicsManager.h"
+#include "ScreenManager.h"
 
 
 void Player::HandleMovement() {
@@ -265,6 +266,12 @@ bool Player::WasHit() {
 }
 
 void Player::Update() {
+	if (ScreenManager::Instance()->GetmGameOverReset() == true) {
+		mSelectedColor = 0;
+		mSelectedColor2 = 0;
+	
+	}
+	
 	HandleMovement();
 	if (mWasHit) {
 	

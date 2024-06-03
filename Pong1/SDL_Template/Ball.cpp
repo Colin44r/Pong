@@ -1,4 +1,5 @@
 #include "Ball.h"
+#include "ScreenManager.h"
 
 float Ball::GetYVelocity() {
 	return mYVelocity;
@@ -155,6 +156,10 @@ Ball::Ball(float movespeed, std:: string name) {
 		void Ball::Update() {
 			mBall->Update();
 			HandleMovement();
+			if (ScreenManager::Instance()->GetmGameOverReset() == true) {
+				mSelectedColor = 0;
+
+			}
 			if (mWasHit) {
 
 				if (mCanBeHit >= mCannotBeHit) {

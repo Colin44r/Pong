@@ -31,12 +31,24 @@ void ScreenManager::Update() {
 		break;
 	case Play:
 		mPlayScreen->Update();
+		if (mGameOverReset == true) {
+			mGameOverReset = false;
+
+		}
 		if (mPlayScreen->GameOver()) {
 			mCurrentScreen = Start;
+			mGameOverReset = true;
 		}
 		break;
 	}
 }
+
+bool ScreenManager::GetmGameOverReset() {
+	return mGameOverReset;
+
+}
+
+
 
 void ScreenManager::Render() { 
 
@@ -57,7 +69,7 @@ ScreenManager::ScreenManager() {
 	mPlayScreen = new PlayScreen();
 
 	mCurrentScreen = Start; 
-
+	mGameOverReset = false;
 }
 
 ScreenManager::~ScreenManager() {

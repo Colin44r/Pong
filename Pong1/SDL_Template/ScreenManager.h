@@ -14,11 +14,12 @@ private:
 
 	StartScreen * mStartScreen;
 	PlayScreen * mPlayScreen;
+	bool mGameOverReset;
 
 public:
 	static ScreenManager * Instance();
 	static void Release();
-
+	bool GetmGameOverReset();
 	void Update();
 	void Render();
 

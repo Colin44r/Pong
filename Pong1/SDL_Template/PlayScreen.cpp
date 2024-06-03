@@ -218,7 +218,6 @@ void PlayScreen::Update() {
 		
 		if (mGameOverTimer >= mTimerDuration) {
 				mGameOver = true;
-	
 		}
 		else {
 			mGameOverTimer += mTimer->DeltaTime();
@@ -266,8 +265,10 @@ void PlayScreen::Update() {
 
 		else if (mSelectedMode == 2) {
 			//if (mSpawnBalls = true);
-			mBall2->Update();
-			mBall3->Update();
+			if (mLeftPaddle->GetScore() < 11 && mRightPaddle->GetScore() < 11) {
+				mBall2->Update();
+				mBall3->Update();
+			}
 			mLeftPaddle->SetMoveSpeed(750);
 			mRightPaddle->SetMoveSpeed(750); // Paddle speeds
 
